@@ -1,0 +1,16 @@
+narudzbina_id,kupac_id,proizvod,kategorija,cena,datum
+101,1,Laptop,Elektronika,850,2024-01-05
+102,1,Miš,Elektronika,25,2024-01-20
+103,2,Stolica,Nameštaj,320,2024-01-08
+104,3,Telefon,Elektronika,450,2024-01-15
+105,3,Slušalice,Elektronika,75,2024-02-01
+106,4,Sto,Nameštaj,340,2024-02-05
+107,4,Lampa,Nameštaj,45,2024-02-10
+108,4,Tablet,Elektronika,320,2024-02-14
+109,5,Monitor,Elektronika,290,2024-02-20
+110,6,Fotelja,Nameštaj,210,2024-03-01
+111,6,Tastatura,Elektronika,55,2024-03-05
+112,7,Laptop,Elektronika,870,2024-03-10
+113,1,Punjač,Elektronika,30,2024-03-15
+114,3,Sto,Nameštaj,340,2024-03-18
+115,8,Slušalice,Elektronika,75,2024-03-20

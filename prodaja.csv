@@ -1,0 +1,16 @@
+id,proizvod,kategorija,kolicina,cena,datum,grad
+1,Laptop,Elektronika,2,850.0,2024-01-05,Beograd
+2,Telefon,Elektronika,5,450.0,2024-01-07,Novi Sad
+3,Stolica,Nameštaj,3,120.0,2024-01-10,Beograd
+4,Sto,Nameštaj,1,340.0,2024-01-12,Niš
+5,Slušalice,Elektronika,8,75.0,2024-01-15,Novi Sad
+6,Lampa,Nameštaj,4,45.0,2024-01-18,Beograd
+7,Tablet,Elektronika,3,320.0,2024-01-20,Niš
+8,Monitor,Elektronika,2,290.0,2024-02-01,Beograd
+9,Fotelja,Nameštaj,2,210.0,2024-02-05,Novi Sad
+10,Tastatura,Elektronika,6,55.0,2024-02-08,Niš
+11,Laptop,Elektronika,1,870.0,2024-02-10,Novi Sad
+12,Sto,Nameštaj,3,340.0,2024-02-14,Beograd
+13,Telefon,Elektronika,4,460.0,2024-02-17,Niš
+14,Lampa,Nameštaj,7,45.0,2024-02-20,Novi Sad
+15,Monitor,Elektronika,1,300.0,2024-03-01,Beograd

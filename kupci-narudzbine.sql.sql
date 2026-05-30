@@ -1,0 +1,88 @@
+-- Zadatak 1: Ime kupca i naziv proizvoda koji je kupio
+SELECT 
+    k.ime,
+    n.proizvod
+FROM kupci k
+JOIN narudzbine n
+ON k.kupac_id = n.kupac_id
+
+-- Zadatak 2: Kupci iz Beograda i sta su kupili
+SELECT 
+    k.ime,
+    n.proizvod,
+    k.grad
+FROM kupci k
+JOIN narudzbine n
+ON k.kupac_id = n.kupac_id
+WHERE k.grad = 'Beograd'
+
+-- Zadatak 3: Ime kupca, proizvod i cena - sortirano od najskupljeg
+SELECT 
+    k.ime,
+    n.proizvod,
+    n.cena
+FROM kupci k
+JOIN narudzbine n
+ON k.kupac_id = n.kupac_id
+ORDER BY n.cena DESC
+
+-- Zadatak 4: Svi kupci, cak i oni koji nisu nista kupili (LEFT JOIN)
+SELECT *
+FROM kupci k
+LEFT JOIN narudzbine n
+ON k.kupac_id = n.kupac_id
+
+-- Zadatak 5: Kupci koji NISU nista kupili
+SELECT *
+FROM kupci k
+LEFT JOIN narudzbine n
+ON k.kupac_id = n.kupac_id
+WHERE n.kupac_id IS NULL
+
+-- Zadatak 6: Koliko je svaki kupac ukupno potrošio
+SELECT 
+    k.ime,
+    SUM(n.cena) AS Ukupno
+FROM kupci k
+JOIN narudzbine n
+ON k.kupac_id = n.kupac_id
+GROUP BY k.ime
+
+-- Zadatak 7: Ko je potrošio najvise - samo prvi
+SELECT TOP 1
+    k.ime,
+    SUM(n.cena) AS Ukupno
+FROM kupci k
+JOIN narudzbine n
+ON k.kupac_id = n.kupac_id
+GROUP BY k.ime
+ORDER BY SUM(n.cena) DESC
+
+-- Zadatak 8: Koji grad ukupno troši najvise
+SELECT TOP 1
+    k.grad,
+    SUM(n.cena) AS Ukupno
+FROM kupci k
+JOIN narudzbine n
+ON k.kupac_id = n.kupac_id
+GROUP BY k.grad
+ORDER BY SUM(n.cena) DESC
+
+-- Zadatak 9: Kupci koji su kupili vise od jednom
+SELECT 
+    k.ime,
+    COUNT(*) AS broj_kupovina
+FROM kupci k
+JOIN narudzbine n
+ON k.kupac_id = n.kupac_id
+GROUP BY k.ime
+HAVING COUNT(*) > 1
+
+-- Zadatak 10: Prosecna potrošnja po gradu
+SELECT 
+    k.grad,
+    AVG(n.cena) AS Prosek
+FROM kupci k
+JOIN narudzbine n
+ON k.kupac_id = n.kupac_id
+GROUP BY k.grad
