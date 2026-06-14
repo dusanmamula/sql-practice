@@ -1,88 +1,88 @@
--- Zadatak 1: Ime kupca i naziv proizvoda koji je kupio
+-- Task 1: Customer name and the product they purchased
 SELECT 
-    k.ime,
-    n.proizvod
+    k.ime AS customer_name,
+    n.proizvod AS product_name
+FROM kupci k
+JOIN narudzbine n
+ON k.kupac_id = n.kupac_id;
+
+-- Task 2: Customers from Belgrade and what they purchased
+SELECT 
+    k.ime AS customer_name,
+    n.proizvod AS product_name,
+    k.grad AS city
 FROM kupci k
 JOIN narudzbine n
 ON k.kupac_id = n.kupac_id
+WHERE k.grad = 'Beograd';
 
--- Zadatak 2: Kupci iz Beograda i sta su kupili
+-- Task 3: Customer name, product, and price - sorted from most expensive
 SELECT 
-    k.ime,
-    n.proizvod,
-    k.grad
+    k.ime AS customer_name,
+    n.proizvod AS product_name,
+    n.cena AS price
 FROM kupci k
 JOIN narudzbine n
 ON k.kupac_id = n.kupac_id
-WHERE k.grad = 'Beograd'
+ORDER BY n.cena DESC;
 
--- Zadatak 3: Ime kupca, proizvod i cena - sortirano od najskupljeg
-SELECT 
-    k.ime,
-    n.proizvod,
-    n.cena
+-- Task 4: All customers, including those who haven't purchased anything (LEFT JOIN)
+SELECT *
 FROM kupci k
-JOIN narudzbine n
-ON k.kupac_id = n.kupac_id
-ORDER BY n.cena DESC
+LEFT JOIN narudzbine n
+ON k.kupac_id = n.kupac_id;
 
--- Zadatak 4: Svi kupci, cak i oni koji nisu nista kupili (LEFT JOIN)
+-- Task 5: Customers who HAVE NOT purchased anything
 SELECT *
 FROM kupci k
 LEFT JOIN narudzbine n
 ON k.kupac_id = n.kupac_id
+WHERE n.kupac_id IS NULL;
 
--- Zadatak 5: Kupci koji NISU nista kupili
-SELECT *
-FROM kupci k
-LEFT JOIN narudzbine n
-ON k.kupac_id = n.kupac_id
-WHERE n.kupac_id IS NULL
-
--- Zadatak 6: Koliko je svaki kupac ukupno potrošio
+-- Task 6: Total amount spent by each customer
 SELECT 
-    k.ime,
-    SUM(n.cena) AS Ukupno
+    k.ime AS customer_name,
+    SUM(n.cena) AS total_spent
+FROM kupci k
+JOIN narudzbine n
+ON k.kupac_id = n.kupac_id
+GROUP BY k.ime;
+
+-- Task 7: Top spending customer (Highest total spend)
+SELECT TOP 1
+    k.ime AS customer_name,
+    SUM(n.cena) AS total_spent
 FROM kupci k
 JOIN narudzbine n
 ON k.kupac_id = n.kupac_id
 GROUP BY k.ime
+ORDER BY SUM(n.cena) DESC;
 
--- Zadatak 7: Ko je potrošio najvise - samo prvi
+-- Task 8: City with the highest total spend
 SELECT TOP 1
-    k.ime,
-    SUM(n.cena) AS Ukupno
-FROM kupci k
-JOIN narudzbine n
-ON k.kupac_id = n.kupac_id
-GROUP BY k.ime
-ORDER BY SUM(n.cena) DESC
-
--- Zadatak 8: Koji grad ukupno troši najvise
-SELECT TOP 1
-    k.grad,
-    SUM(n.cena) AS Ukupno
+    k.grad AS city,
+    SUM(n.cena) AS total_spent
 FROM kupci k
 JOIN narudzbine n
 ON k.kupac_id = n.kupac_id
 GROUP BY k.grad
-ORDER BY SUM(n.cena) DESC
+ORDER BY SUM(n.cena) DESC;
 
--- Zadatak 9: Kupci koji su kupili vise od jednom
+-- Task 9: Customers who have made more than one purchase
 SELECT 
-    k.ime,
-    COUNT(*) AS broj_kupovina
+    k.ime AS customer_name,
+    COUNT(*) AS purchase_count
 FROM kupci k
 JOIN narudzbine n
 ON k.kupac_id = n.kupac_id
 GROUP BY k.ime
-HAVING COUNT(*) > 1
+HAVING COUNT(*) > 1;
 
--- Zadatak 10: Prosecna potrošnja po gradu
+-- Task 10: Average spend per city
 SELECT 
-    k.grad,
-    AVG(n.cena) AS Prosek
+    k.grad AS city,
+    AVG(n.cena) AS average_spend
 FROM kupci k
 JOIN narudzbine n
 ON k.kupac_id = n.kupac_id
-GROUP BY k.grad
+GROUP BY k.grad;
